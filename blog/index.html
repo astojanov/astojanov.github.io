@@ -1,0 +1,17 @@
+---
+layout: page
+title: Blog
+---
+
+{% for post in site.posts %}
+  <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+  <br />
+  {{ post.date | date: "%d-%m-%Y" }}
+  <br />
+  {{ post.content | strip | strip_html | truncate: 200}}
+  <br />
+  <br />
+{% endfor %}
+
+
+

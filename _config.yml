@@ -1,0 +1,10 @@
+# Site settings
+title: Alen Stojanov
+email: ioi.alen@gmail.com
+baseurl: ""
+url: "https://astojanov.github.io"
+linkedin_username: astojanov
+github_username:  astojanov
+
+# Build settings
+markdown: kramdown

@@ -1,0 +1,57 @@
+---
+layout: default
+---
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+
+    <div class="main-title">
+      <h1>{{ page.title }}</h1>
+      <!--<h3>{{ page.date | date: "%b %-d, %Y" }}</h3>-->
+      <div class="divider">
+        <div class="zigzag large clearfix "  data-svg-drawing="yes" >
+          <svg xml:space="preserve" viewBox="0 0 69.172 14.975" width="37" height="28" y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <path d="M1.357,12.26 10.807,2.81 20.328,12.332 29.781,2.879 39.223,12.321 48.754,2.79 58.286,12.321 67.815,2.793"  style="stroke-dasharray: 93.9851, 93.9851; stroke-dashoffset: 0;"/>
+      </svg>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="content">
+
+      <div class="block-content ">
+        <div class="profile ">
+          <!--<h1>{{ page.title }}</h1>-->
+          <!--<h3>a PhD</h3>-->
+        </div>
+
+        <div class="post-content" itemprop="articleBody">
+          {{ content }}
+        </div>
+      </div>
+
+      <div id="disqus_thread"></div>
+      <script>
+
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+        /*
+         var disqus_config = function () {
+         this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+         this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+         };
+         */
+        (function() { // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          s.src = '//astojanov-github-io.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+</article>

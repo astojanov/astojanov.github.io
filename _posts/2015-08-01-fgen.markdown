@@ -1,0 +1,14 @@
+---
+layout: post
+title:  "Abstracting Vector Architectures in Library Generators: Case Study Convolution Filters"
+date:   2015-08-01 10:00:00 +0200
+categories: blog
+---
+
+This post is long over due. The slides bellow are part of my talk given on ARRAY 2014 workshop, collocated with PLDI 2014 in Edinburgh, UK.
+
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/9oBmaZTl7h8gTA" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/astojanov/abstracting-vector-architectures-in-library-generators-case-study-convolution-filters" title="Abstracting Vector Architectures in Library Generators: Case Study Convolution Filters" target="_blank">Abstracting Vector Architectures in Library Generators: Case Study Convolution Filters</a> </strong> from <strong><a target="_blank" href="//www.slideshare.net/astojanov">ETH Zurich</a></strong> </div>
+
+The full paper of this project can be found here, and abstract is attached bellow:
+
+We present FGen, a program generator for high performance convolution operations (finite-impulse-response filters). The generator uses an internal mathematical DSL to enable structural optimization at a high level of abstraction. We use FGen as a testbed to demonstrate how to provide modular and extensible support for modern SIMD vector architectures in a DSL-based generator. Specifically, we show how to combine staging and generic programming with type classes to abstract over both the data type (real or complex) and the target architecture (e.g., SSE or AVX) when mapping DSL expressions to C code with explicit vector intrinsics. Benchmarks shows that the generated code is highly competitive with commercial libraries.
