@@ -1,7 +1,7 @@
 ---
-layout: post
-title:  "OpenVPN to route all / selective traffic to a client"
-date:   2013-03-31 10:00:00 +0200
+layout:     post
+title:      "OpenVPN to route all / selective traffic to a client"
+date:       2013-03-31 10:00:00 +0200
 categories: blog
 ---
 

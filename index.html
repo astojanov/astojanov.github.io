@@ -1,6 +1,6 @@
 ---
 layout: default
-title: About
+title: Alen Stojanov
 ---
 
 <div class="main-title">
@@ -27,15 +27,24 @@ title: About
           I'm a PhD student at <a href="https://www.ethz.ch/">ETH Zürich</a>
           in the Advanced Computering Laboratory, supervised by
           <a href="https://www.inf.ethz.ch/personal/markusp/">Prof. Dr. Markus Püschel</a>.
-          My current research interest include compilers, high performance computing, generators and DSLs.
+          My current interests include compilers, high performance computing, generators and domain specific languages (DSLs).
         </p>
+        <br />
       </div>
       <div class="col-md-6">
         <p>
           I am originally from <a href="https://en.wikipedia.org/wiki/Veles,_Macedonia">Veles, Macedonia</a>
           where I was born and grew up. Before coming to ETH Zurich, I obtained my MSc degree at <a href="https://www.epfl.ch/index.en.html">EPFL Lausanne</a>,
-          and BSc degree at <a href="http://www.jacobs-university.de/">Jacobs University Bremen</a>.
+          and BSc degree at <a href="http://www.jacobs-university.de/">Jacobs University Bremen</a><br />.
         </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+      <p>
+        My research focuses on building modern high level abstractions for code generators using Scala, <a href="https://scala-lms.github.io/">Lightweight Modular Staging (LMS)</a> framework and meta-programming.
+        I also have tendency to play with auto-tuning and explicit vectorization using structural optimizations of DSLs to achieve highest performance.
+      </p>
       </div>
     </div>
   </div>
@@ -56,10 +65,16 @@ title: About
 <div class="content">
   <div class="block-content ">
     <table class="post-table">
-      {% for post in site.posts limit: 3%}
+      {% for post in site.posts limit: 4%}
       <tr>
         <td>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">
+            {% if post.shortTitle %}
+              {{ post.shortTitle }}
+            {% else %}
+              {{ post.title }}
+            {% endif %}
+          </a>
         </td>
         <td class="date">{{ post.date | date: "%d-%m-%Y" }}</td>
       </tr>
@@ -114,6 +129,89 @@ title: About
 </div>
 
 
+<div class="main-title">
+  <h1>Tutorials</h1>
+  <div class="divider">
+    <div class="zigzag large clearfix "  data-svg-drawing="yes" >
+      <svg xml:space="preserve" viewBox="0 0 69.172 14.975" width="37" height="28" y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <path d="M1.357,12.26 10.807,2.81 20.328,12.332 29.781,2.879 39.223,12.321 48.754,2.79 58.286,12.321 67.815,2.793"  style="stroke-dasharray: 93.9851, 93.9851; stroke-dashoffset: 0;"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="block-content ">
+    <div class="timeline education">
+      <div class="row ">
+        <div class="col-md-12">
+          <div class="exp-holder">
+
+            <div class="exp">
+              <div class="hgroup" >
+                <h4>Scala, LMS and Delite for High-Performance DSLs and Program Generators</h4>
+                <h6>Tiark Rompf, Nada Amin, Kevin Brown, HyoukJoong Lee, Arvind Sujeeth, Georg Ofenbeck, Alen Stojanov</h6>
+                <h6>
+                  <i class="icon-calendar"></i><a href="http://pldi2013.ucombinator.org/tutorials.html">PLDI'13</a>
+                  | <a href="https://scala-lms.github.io/pldi2013/"><span class="current">Link</span></a>
+                </h6>
+              </div>
+            </div>
+
+            <div class="exp">
+              <div class="hgroup" >
+                <h4>Scala, LMS and Delite for High-Performance DSLs and Program Generators</h4>
+                <h6>Kevin Brown, Georg Ofenbeck, Tiark Rompf, Alen Stojanov</h6>
+                <h6>
+                  <i class="icon-calendar"></i><a href="https://pldi17.sigplan.org/track/pldi-2017-workshops-and-tutorials">PLDI'17</a>
+                  | <a href="https://scala-lms.github.io/pldi2017/index.html"><span class="current">Link</span></a>
+                </h6>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+  </div>
+</div>
+
+<div class="main-title">
+  <h1>Student Projects</h1>
+  <div class="divider">
+    <div class="zigzag large clearfix "  data-svg-drawing="yes" >
+      <svg xml:space="preserve" viewBox="0 0 69.172 14.975" width="37" height="28" y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <path d="M1.357,12.26 10.807,2.81 20.328,12.332 29.781,2.879 39.223,12.321 48.754,2.79 58.286,12.321 67.815,2.793"  style="stroke-dasharray: 93.9851, 93.9851; stroke-dashoffset: 0;"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="block-content ">
+    <div class="timeline education">
+      <div class="row ">
+        <div class="col-md-12">
+          <div class="exp-holder">
+            <div class="exp">
+              <div class="hgroup" >
+                <h4>Explicit SIMD instructions into JVM using LMS</h4>
+                <h6>Ivaylo Toskov</h6>
+                <h6>
+                  <i class="icon-calendar"></i>June 2017</a>
+                  | <a href="https://www.research-collection.ethz.ch/handle/20.500.11850/166022"><span class="current">PDF</span></a>
+                </h6>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+  </div>
+</div>
 
 
 

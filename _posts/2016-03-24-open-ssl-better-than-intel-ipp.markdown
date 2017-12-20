@@ -1,8 +1,11 @@
 ---
-layout: post
-title:  "OpenSSL better than Intel IPP"
-date:   2016-03-24 10:00:00 +0200
-categories: blog
+layout      : post
+title       : "OpenSSL better than Intel IPP"
+date        : 2016-03-24 10:00:00 +0200
+categories  : blog
+type        : article
+image       : /img/openssl-ipp-haswell.png
+description : It seems that Intel IPP is only better generating keys which are less than 512 bits of length, while OpenSSL outperforms Intel IPP in almost all cases above 512 bits, generating the keys in less amount of CPU cycles. Considering that RSA keys of less than 1024 bytes are considered as insecure, these results, to my surprise, render the implementation of RSA key pair generation of Intel IPP obsolete.
 ---
 
 Recently I was in a need to generate a lot of RSA keys. As a true scientist in the making, I decided to do my research, and investigate the prior work. The simple solution was to use OpenSSL and use the builtin RSA_generate_key / RSA_generate_key_ex functions. However, I needed the generation of RSA keys to be as fast as possible.
