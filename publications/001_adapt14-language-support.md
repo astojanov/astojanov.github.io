@@ -4,6 +4,7 @@ type: publication
 
 title: "Language Support for the Construction of High Performance Code Generators"
 authors: "Georg Ofenbeck, Tiark Rompf, Alen Stojanov, Martin Odersky and Markus Püschel"
+pdf: /publications/preprint/001_adapt14-language-support.pdf
 conf: ADAPT'14
 confURL: http://adapt-workshop.org/2014/
 abstract: |
