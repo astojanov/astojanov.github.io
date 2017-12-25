@@ -150,7 +150,7 @@ compilation starting from the `C1` compiler to the last phase of the `C2` compil
 ```
 
 
-Indeed, the assembly diagnostics confirms that the JVM only uses `SSE` whereas our staged version uses `AVX` and `FMA`,
+Indeed, the assembly diagnostics confirms that the JVM only uses `SSE` registers, whereas our staged version uses `AVX` registers and `FMA` instructions,
 which explains the better performance for larger sizes.
 
 <br />
@@ -292,20 +292,20 @@ In this benchmark we tackle the building blocks of the [SGD](https://en.wikipedi
 the dot product operator, performed on two arrays. But instead of standard arrays, we decided to operate on arrays of 32, 16, 8 and 4-bit precision.
 For 32 and 16-bit we use floating point, which is natively supported by the hardware; for the lower precision formats, we use
 [quantized arrays](http://ieeexplore.ieee.org/document/7780890/). Quantization is a lossy compression technique that maps continuous values to
-a finite set of fixed bit-width numbers. For a given vector `v` of size `n` and precision of `b` bits,
-we first derive a factor `s_v` that scales the vector elements `v_i` into the representable range:
+a finite set of fixed bit-width numbers. For a given vector $$v$$ of size $$n$$ and precision of $$b$$ bits,
+we first derive a factor $$s_v$$ that scales the vector elements $$v_i$$ into the representable range:
 
 <p>
 $$ s_v = \frac{2^{b-1} - 1}{\max_{i \in [1, n]} |v_i|}. $$
 </p>
 
-The scaled $v_i$ are then quantized stochastically:
+The scaled $$v_i$$ are then quantized stochastically:
 
 <p>
 $$ v_i \rightarrow \left\lfloor v_i \cdot s_v + \mu \right\rfloor  $$
 </p>
 
-where `\mu` is drawn uniformly from the interval `(0,1)`. With this, a quantized array consists of one scaling factor and an array of quantized `b`-bit values.
+where $$\mu$$ is drawn uniformly from the interval $$(0,1)$$. With this, a quantized array consists of one scaling factor and an array of quantized $$b$$-bit values.
 
 <div style="max-width: 760px; margin: auto">
     <img src="/img/lms-intrinsics-precision-plot.png"  />
