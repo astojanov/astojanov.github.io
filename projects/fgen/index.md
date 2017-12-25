@@ -1,6 +1,6 @@
 ---
 layout      : page
-title       : "FGen"
+title       : "FGen: High-Performance Convolution Generator"
 image       : "/projects/fgen/FGen.png"
 description : "FGen is a program generator for performance-optimized functions implementing convolutions, or FIR filters. The generator uses an internal mathematical DSL to enable structural optimization at a high level of abstraction. We use FGen as a testbed to demonstrate how to provide modular and extensible support for modern SIMD (single instruction, multiple data) vector architectures in a DSL-based generator."
 type        : article
@@ -620,6 +620,8 @@ thorough exploration of the possible tiling strategies in FGen.
 <br />
 
 If you want to learn more about this work, check out our paper titled
-[Abstracting Vector Architectures in Library Generators: Case Study Convolution Filters](http://spiral.ece.cmu.edu:8080/pub-spiral/pubfile/paper_179.pdf).
+[Abstracting Vector Architectures in Library Generators: Case Study Convolution Filters](http://spiral.ece.cmu.edu:8080/pub-spiral/pubfile/paper_179.pdf),
+or check out the slides of the talk given at [ARRAY'14](http://www.sable.mcgill.ca/array/2014/index.html)
+available at the blog post [here](/blog/2015/08/01/fgen.html).
 
 [fgenpaper]: http://spiral.ece.cmu.edu:8080/pub-spiral/pubfile/paper_179.pdf

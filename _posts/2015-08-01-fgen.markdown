@@ -6,7 +6,26 @@ date:   2015-08-01 10:00:00 +0200
 categories: blog
 ---
 
-This post is long over due. The slides bellow are part of my talk given on ARRAY 2014 workshop, collocated with PLDI 2014 in Edinburgh, UK.
+The slides bellow are part of my talk given on [ARRAY'14](http://www.sable.mcgill.ca/array/2014/index.html) workshop,
+collocated with [PLDI'14](http://conferences.inf.ed.ac.uk/pldi2014/) in Edinburgh, UK. The slides are an overview of the
+[FGen project](https://astojanov.github.io/projects/fgen/) that deals with vector abstractions.
+
+The project resulted with the publication of
+[Abstracting Vector Architectures in Library Generators: Case Study Convolution Filters](http://spiral.ece.cmu.edu:8080/pub-spiral/pubfile/paper_179.pdf),
+having the following abstract:
+
+<div class="row">
+    <div class="col-md-2">
+        &nbsp;
+    </div>
+    <div class="col-md-10">
+        <p style="font-style: italic;">
+        We present FGen, a program generator for high performance convolution operations (finite-impulse-response filters). The generator uses an internal mathematical DSL to enable structural optimization at a high level of abstraction. We use FGen as a testbed to demonstrate how to provide modular and extensible support for modern SIMD vector architectures in a DSL-based generator. Specifically, we show how to combine staging and generic programming with type classes to abstract over both the data type (real or complex) and the target architecture (e.g., SSE or AVX) when mapping DSL expressions to C code with explicit vector intrinsics. Benchmarks shows that the generated code is highly competitive with commercial libraries.
+        </p>
+    </div>
+</div>
+
+Slides and results are available below:
 
 <iframe
     src="//www.slideshare.net/slideshow/embed_code/key/9oBmaZTl7h8gTA"
@@ -20,6 +39,4 @@ This post is long over due. The slides bellow are part of my talk given on ARRAY
     allowfullscreen>
 </iframe>
 
-The full paper of this project can be found here, and abstract is attached bellow:
-
-We present FGen, a program generator for high performance convolution operations (finite-impulse-response filters). The generator uses an internal mathematical DSL to enable structural optimization at a high level of abstraction. We use FGen as a testbed to demonstrate how to provide modular and extensible support for modern SIMD vector architectures in a DSL-based generator. Specifically, we show how to combine staging and generic programming with type classes to abstract over both the data type (real or complex) and the target architecture (e.g., SSE or AVX) when mapping DSL expressions to C code with explicit vector intrinsics. Benchmarks shows that the generated code is highly competitive with commercial libraries.
+For a more detailed overview either check out our paper, or the [FGen project](https://astojanov.github.io/projects/fgen/) page.
