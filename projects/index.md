@@ -26,7 +26,7 @@ title: Projects
   </div>
   <div class="col-md-10">
     <p>
-        <a href="./FGen/">FGen: High-Performance Convolution Generator</a> <br />
+        <a href="./fgen/">FGen: High-Performance Convolution Generator</a> <br />
         FGen is a program generator for performance-optimized functions implementing convolutions, or FIR filters. The generator uses an internal mathematical DSL to enable structural optimization at a high level of abstraction. We use FGen as a testbed to demonstrate how to provide modular and extensible support for modern SIMD (single instruction, multiple data) vector architectures in a DSL-based generator.
     </p>
   </div>
