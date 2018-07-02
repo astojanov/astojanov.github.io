@@ -27,8 +27,8 @@ in the reduction of precision because of reduced data movement.
 This library is implemented in collaboration with [Tyler Michael Smith](https://github.com/tlrmchlsmth)
 as a research project at [Department of Computer Science at ETH Zurich](https://www.inf.ethz.ch/),
 supervised by [Dan Alistarh](https://people.csail.mit.edu/alistarh/) and [Markus Püschel](https://www.inf.ethz.ch/personal/markusp/).
-The work is published at [SIPS 2018](http://sites.ieee.org/sips2018/) and detailed overview of the Clover library can be found
-in the pre-printe available [here](/publications/preprint/005_sips18-sclover.pdf).
+Experimental results of this work are published at [SIPS 2018](http://sites.ieee.org/sips2018/) and are accessible in
+in the pre-print version [here](/publications/preprint/005_sips18-sclover.pdf).
 
 
 <br />
@@ -70,7 +70,11 @@ two’s complement in a 4-bit [nibble](https://en.wikipedia.org/wiki/Nibble). Th
 so we address each the nibbles in software. We accomplish this explicitly in the application logic, storing two consecutive
 nibbles in a byte. As a result, the values in a `CloverVector4` of length n are represented as an array of n/2 bytes.
 `CloverVector8` shares the same design principles. `CloverVector16` and `CloverVector32` containers do not have scales,
-and the data layout is not organized into blocks. A simplified illustration of the `CloverVector4` container is shown below:
+and the data layout is not organized into blocks.
+
+<br />
+
+A simplified `C++` representation of the `CloverVector4` container is shown below:
 
 ```cpp
 class CloverVector4 {
@@ -83,7 +87,7 @@ class CloverVector4 {
 
 The 4-bit values stored in the `values` array are
 in the range of $$\left[-7, 7 \right]$$, therefore each element at position `pos` is obtained by multiplying the value with the
-corresponding scale, and dividing the result by `7.0f`. An illustration of a `get` procedure is given with:
+corresponding scale, and dividing the result by `7.0f`. Therefore `get` routine will have the following form:
 
 ```cpp
 inline float get(uint64_t pos) const
@@ -98,7 +102,7 @@ inline float get(uint64_t pos) const
 }
 ```
 
-where `_mm_srai_epi8_ss` performs 8-bit right shifts while extending in sign bits.
+where `_mm_srai_epi8_ss` performs right bit shifts, extending in sign bits, and operates on 8-bit integers.
 
 <br />
 
@@ -201,34 +205,31 @@ const __m256 su = _mm256_broadcast_ss(su + i);
 const __m256 sv = _mm256_broadcast_ss(sv + i);
 ```
 
-Now once we have the scales, we can multiply them and divide them by 49. As division is expensive,
-we calculate the reciprocal value of 49 into `clover_mm256_rcp_49_ps` and perform multiplication
-instead:
+The dot product routine requires all values to be multiplied point-wise, before the
+result is reduced by summation. Therefore, once we have the scales, we can multiply them,
+while scaling each with factor of `7.0f`. However, division instructions are expensive,
+and we can use multiplication with the reciprocal value of `49.0f`
+(stored into `clover_mm256_rcp_49_ps`) instead:
 
 ```cpp
 const __m256 su_scaled  = _mm256_mul_ps(su, clover_mm256_rcp_49_ps);
 const __m256 scaled_rcp = _mm256_mul_ps(su_scaled, sv);
 ```
 
-While these multiplications happen, we cna always instruct the prefetcher to start moving data
-from RAM into the cache hierarchy from both vectors:
 
-```cpp
-_mm_prefetch((char *)(u + offset + 64), _MM_HINT_T0);
-_mm_prefetch((char *)(v + offset + 64), _MM_HINT_T0);
-```
 
-Once we have loaded the 4-bit values, we obtained 64 values into a single register. As we
-can not operate with 4-bits natively, we will operate such that we convert the 4-bit values
-into 8-bits. Assuming presence of 8-bit shifts, we can apply the fast packing/unpacking
-method to extract the low bits and high bits at each 8-bit chunk. However, `AVX2` provides
+The two loads from the two value arrays, result into two `AVX` registers that hold 64 4-bit values.
+As we can not operate with 4-bits natively, we will convert the 4-bit values
+into 8-bit integers. Assuming presence of 8-bit shifts, we can apply the fast packing/unpacking
+method to extract the low- and high-bits at each 8-bit chunk. However, `AVX2` provides
 us with 16-bit shifts only.
 
 <br />
 
 To deal with that, we shift by 4 bits left, and then we perform bitwise `AND` operations,
-such that the high 4-bits of the 8-bit chunk is taken into consideration. To do that, we
-use the previously defined mask in `clover_mm256_1st_bit_set_epi8`:
+such that the low 4-bits of the 8-bit chunk are placed in the high 4-bits. To avoid dirty
+bits, we apply the previously defined mask in `clover_mm256_1st_bit_set_epi8` to extract
+both the high- and low-bits of `qu` and `qv`:
 
 ```cpp
 const __m256i qu_lo_shift = _mm256_slli_epi16(qu, 4);
@@ -240,10 +241,10 @@ const __m256i qu_lo = _mm256_and_si256(clover_mm256st_bit_set_epi8, qu_lo_shift)
 const __m256i qv_lo = _mm256_and_si256(clover_mm256st_bit_set_epi8, qv_lo_shift);
 ```
 
-At this point in time, we obtain 2 variables for `qu` and 2 variables for `qv` such that
-each contain 32 elements of 4-bit. `qu_hi` represents the 4 high bits, and `qu_lo` represents
-the low 4 bits. In each of these 4 variables, the 4-bits reside in the high 4-bit of the 8-bit
-chunk i.e. they are all multiplied by $$2^4$$.
+At this point in time, we have 2 variables for `qu` and 2 variables for `qv` such that
+each contain 32 elements. `qu_hi` represents the 4 high bits, and `qu_lo` represents
+the low 4 bits. For each of these 4 variables, the extracted 4-bit values reside in the
+high 4-bit of the 8-bit chunk i.e. they are all multiplied by $$2^4$$.
 
 <br />
 
@@ -263,8 +264,8 @@ pairs of intermediate signed 16-bit integers, and pack the saturated results in 
 
 <br />
 
-This means that we can perform multiplication and addition, obtaining 16-bit chunks as a result. However,
-we need to make sure that left operand is unsigned and that the signed is accumlated in the right operator:
+Therefore, in order to benefit from this instruction
+we need to make sure that left operand is unsigned and that the sign is accumulated in the right operand:
 
 ```cpp
 // Get absolute values of u vectors
@@ -299,9 +300,10 @@ Now we can simply add the two 16-bit values using 16-bit addition provided by `A
 const __m256i dot_16 = _mm256_add_epi16(dot_hi_shift, dot_lo_shift);
 ```
 
-The final result of the dot product is a floating point numbers, therefore before we multiply
-the result with the 32-bit float, we need to find some way to convert the 16-bit chunk into
-a float. We can do this in a single instruction using [vpmaddwd](https://software.intel.com/sites/landingpage/IntrinsicsGuide/#text=_mm256_madd_epi16&expand=3256)
+Once we a single variable that represents the dot product of the block, the last thing
+we need is to multiply this value with the corresponding scale. To achieve that,
+we need to convert the 16-bit chunk into a float. We can do this in a single instruction
+using [vpmaddwd](https://software.intel.com/sites/landingpage/IntrinsicsGuide/#text=_mm256_madd_epi16&expand=3256)
 instruction.
 
 ```cpp
@@ -321,8 +323,8 @@ const __m256i dot_32 = _mm256_madd_epi16(clover_mm256_epi16, dot_16);
 const __m256  dot_f  = _mm256_cvtepi32_ps(dot_32);
 ```
 
-Finally, the last thing that we have to consider is multiplying the result, with the
-corresponding scales, and accumulate it into the result. For that we can use `FMA`
+Finally, we perform the last multiplication in the block iteration with the
+corresponding scale, and accumulate it into the result. For that we can use an `FMA`
 instructions:
 
 ```cpp
@@ -348,7 +350,7 @@ static inline float _mm256_haddf32_ps(__m256 acc)
 Clover Supported Routines
 -------------------------
 
-Each container implements the following routines:
+Appart from the dot routine each container implements the following routines:
 
 |                   |   |         |
 --------------------|---|---------|
