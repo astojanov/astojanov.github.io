@@ -5,6 +5,24 @@ title: Projects
 
 <div class="row">
   <div class="col-md-2">
+    <img style="margin: auto; max-width: 100px; max-height: 100px;" src="/projects/clover/clover-icon.png" />
+    <br />
+  </div>
+  <div class="col-md-10">
+    <p>
+        <a href="./clover/">Clover: 4-bit Quantized Linear Algebra Library</a> <br />
+        Clover is a new library for the efficient computation on low-precision data, providing mathematical routines required by fundamental methods in optimization and sparse recovery. Our library faithfully implements variants of stochastic quantization and supports 4-bit quantized format and demonstrate that 4-bit can be implemented efficiently using Intel AVX2 despite the lack of native support for this data format.
+
+    </p>
+  </div>
+</div>
+
+<br />
+
+
+
+<div class="row">
+  <div class="col-md-2">
     <img style="margin: auto; max-width: 100px; max-height: 100px;" src="/img/artifacts_evaluated_reusable.jpg" />
     <br />
   </div>

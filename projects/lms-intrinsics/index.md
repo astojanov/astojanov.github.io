@@ -195,6 +195,11 @@ compiled. To make the future use of this work more convenient, we decided to pre
 
 To learn more about this work, check out our paper [SIMD Intrinsics on Managed Language Runtimes](/publications/preprint/004_cgo18-simd.pdf). For in-depth overview
 of the process of automatic generation of SIMD eDSLs, have a look at the master thesis work of Ivaylo titled [Explicit SIMD instructions into JVM using LMS](https://www.research-collection.ethz.ch/handle/20.500.11850/166022).
+Finally, you can also checkout the [20 minute video presentation at CGO](https://www.youtube.com/watch?v=NOkxNvuXEF0)
+which is followed by a short question and answer session.
+
+<br />
+
 
 [lms]: https://scala-lms.github.io/index.html
 [cintrinsics]: https://en.wikipedia.org/wiki/Intrinsic_function#C_and_C++

@@ -322,7 +322,10 @@ that the HotSpot compiler cannot synthesize with a lightweight autovectorization
 
 To learn more about this work, check out our paper [SIMD Intrinsics on Managed Language Runtimes](/publications/preprint/004_cgo18-simd.pdf). For in-depth overview
 of the process of automatic generation of SIMD eDSLs, have a look at the master thesis work of Ivaylo titled [Explicit SIMD instructions into JVM using LMS](https://www.research-collection.ethz.ch/handle/20.500.11850/166022).
-Also check the code examples and our artefact at [https://github.com/astojanov/NGen](https://github.com/astojanov/NGen)
+Also check the code examples and our artefact at [https://github.com/astojanov/NGen](https://github.com/astojanov/NGen).
+Finally, you can also checkout the [20 minute video presentation at CGO](https://www.youtube.com/watch?v=NOkxNvuXEF0)
+which is followed by a short question and answer session.
+
 
 
 
