@@ -27,7 +27,7 @@ in the reduction of precision because of reduced data movement.
 This library is implemented in collaboration with [Tyler Michael Smith](https://github.com/tlrmchlsmth)
 as a research project at [Department of Computer Science at ETH Zurich](https://www.inf.ethz.ch/),
 supervised by [Dan Alistarh](https://people.csail.mit.edu/alistarh/) and [Markus Püschel](https://www.inf.ethz.ch/personal/markusp/).
-Experimental results of this work are published at [SIPS 2018](http://sites.ieee.org/sips2018/) and are accessible in the pre-print version [here](/publications/preprint/005_sips18-sclover.pdf).
+Experimental results of this work are published at [SIPS 2018](http://sites.ieee.org/sips2018/) and are accessible in the pre-print version [here](/publications/preprint/005_sips18-clover.pdf).
 
 
 <br />
