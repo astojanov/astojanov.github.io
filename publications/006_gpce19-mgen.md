@@ -4,7 +4,7 @@ type: publication
 
 title: "A Stage-Polymorphic IR for Compiling MATLAB-Style Dynamic Tensor Expressions"
 authors: "Alen Stojanov, Tiark Rompf, Markus Püschel"
-pdf: /publications/preprint/007_gpce19-mgen.pdf
+pdf: /publications/preprint/006_gpce19-mgen.pdf
 conf: GPCE'19
 confURL: https://conf.researchr.org/home/gpce-2019
 abstract: |
