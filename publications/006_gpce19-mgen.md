@@ -23,4 +23,5 @@ abstract: |
            performing type, shape, and ISA specialization. Our prototype MATLAB compiler MGen 
            produces static C code that supports all primitive types, heavily overloaded operators, 
            many other dynamic aspects of the language, and explicit vectorization for SIMD architectures.
+           
 ---

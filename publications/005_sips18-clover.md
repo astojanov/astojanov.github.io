@@ -1,14 +1,14 @@
 ---
-   layout: publication
-   type: publication
-   
-   title: "Fast Quantized Arithmetic on x86: Trading Compute for Data Movement"
-   authors: "Alen Stojanov, Tyler Michael Smith, Dan Alistarh, Markus Püschel"
-   pdf: /publications/preprint/005_sips18-clover.pdf
-   conf: SIPS'18
-   confURL: http://sites.ieee.org/sips2018/
-   abstract: |
-               We introduce a new library for the efficient computation on
+layout: publication
+type: publication
+
+title: "Fast Quantized Arithmetic on x86: Trading Compute for Data Movement"
+authors: "Alen Stojanov, Tyler Michael Smith, Dan Alistarh, Markus Püschel"
+pdf: /publications/preprint/005_sips18-clover.pdf
+conf: SIPS'18
+confURL: http://sites.ieee.org/sips2018/
+abstract: |
+We introduce a new library for the efficient computation on
                low-precision data, providing mathematical routines required
                by fundamental methods in optimization and sparse recovery.
                Our library faithfully implements variants of stochastic
